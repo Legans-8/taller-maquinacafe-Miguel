@@ -6,6 +6,14 @@ Tras hacer el análisis (entradas, salidas), reglas de negocio y deducir el func
 ## Nota sobre el agua
 La máquina está conectada directamente a una fuente de agua, así que el agua es ilimitada. Por eso no se lleva un nivel de agua que se vaya gastando, pero igual cada receta usa una cantidad en mililitros.
 
+## Nota sobre el azúcar
+El azúcar no es una bebida aparte. El cliente la escoge por niveles para cualquier bebida:
+
+- Nivel 0: sin azúcar (0 g)
+- Nivel 1: bajo (3 g)
+- Nivel 2: medio (6 g)
+- Nivel 3: alto (9 g)
+
 ## Variables: ¿let o const?
 
 `const` si el valor nunca cambia, `let` si cambia mientras la máquina funciona.
@@ -14,8 +22,10 @@ La máquina está conectada directamente a una fuente de agua, así que el agua 
 - **saldo**: sube cuando el cliente mete plata y baja cuando compra.
 - **cafe**: se gasta con cada bebida.
 - **leche**: se gasta con cada bebida.
+- **chocolate**: se gasta con cada bebida.
 - **vaso**: se gasta con cada bebida.
-- **azucar**: se gasta con cada bebida.
+- **azucar**: se gasta según el nivel que escoja el cliente.
+- **nivelAzucar**: cambia según lo que escoja el cliente en cada compra.
 - **te**: se gasta con cada bebida.
 - **cambio (monedas, billetes)**: cambia según lo que haya que devolver.
 
@@ -23,34 +33,29 @@ La máquina está conectada directamente a una fuente de agua, así que el agua 
 - **agua**: la fuente es directa, nunca se acaba.
 - **precios**: no cambian mientras funciona.
 - **recetas**: cada bebida siempre lleva lo mismo.
+- **gramos por nivel de azúcar**: cada nivel siempre gasta lo mismo.
 
 ## Tipo de dato: number (¿int o float?)
 
-Todas son `number` en JavaScript. Pensando si serían int o float:
-
-- **saldo**: int, en $ (pesos colombianos), porque los precios son números enteros.
+- **saldo**: int, en $ (pesos colombianos), porque ya no hay centavos.
 - **cafe**: int, en gramos.
 - **agua**: int, en mililitros (ilimitada).
 - **leche**: int, en mililitros.
-- **vaso**: int, en unidades, siempre es 1 vaso.
+- **chocolate**: int, en gramos.
+- **vaso**: int, en unidades, no existe medio vaso.
 - **azucar**: int, en gramos.
+- **nivelAzucar**: int, de 0 a 3, no existe el nivel 1.5.
 - **te**: int, en gramos.
 - **cambio (monedas, billetes)**: int, en $.
 
-## Recetas
+## Recetas (8 productos)
 
-Cada bebida gasta 1 vaso.
+Cada bebida gasta 1 vaso, y el azúcar se suma aparte según el nivel escogido.
 
 ### Tinto
 - Café: 8 g
 - Agua: 150 ml
 - Precio: $1500
-
-### Tinto con azúcar
-- Café: 8 g
-- Agua: 150 ml
-- Azúcar: 5 g
-- Precio: $1700
 
 ### Café con leche
 - Café: 8 g
@@ -59,23 +64,52 @@ Cada bebida gasta 1 vaso.
 - Precio: $2500
 
 ### Té
-- Té: 10 g
+- Té: 3 g
 - Agua: 150 ml
 - Precio: $1500
 
 ### Té con leche
-- Té: 10 g
+- Té: 3 g
 - Agua: 100 ml
 - Leche: 80 ml
 - Precio: $2500
+
+### Leche caliente
+- Leche: 150 ml
+- Precio: $2000
+
+### Chocolate
+- Chocolate: 25 g
+- Agua: 60 ml
+- Leche: 150 ml
+- Precio: $3000
+
+### Capuchino
+- Café: 8 g
+- Agua: 30 ml
+- Leche: 120 ml
+- Precio: $3000
+
+### Mokachino
+- Café: 8 g
+- Chocolate: 15 g
+- Agua: 30 ml
+- Leche: 120 ml
+- Precio: $3500
 
 ## Reglas de negocio (idea básica)
 
 1. El cliente mete plata y se suma al `saldo`.
 2. Elige una bebida.
-3. Si el `saldo` alcanza y hay ingredientes suficientes, se prepara.
-4. Se gastan los ingredientes de la receta y se descuenta el precio del `saldo`.
-5. Lo que sobre del `saldo` se devuelve como `cambio` (monedas y billetes).
+3. Elige el nivel de azúcar (0, 1, 2 o 3). Si no escoge, se queda en 0.
+4. Si el `saldo` alcanza y hay ingredientes suficientes, se prepara.
+5. Se gastan los ingredientes de la receta, más el azúcar del nivel escogido, y se descuenta el precio del `saldo`.
+6. Lo que sobre del `saldo` se devuelve como `cambio` (monedas y billetes).
+
+### Bloqueos
+- Si falta algún ingrediente de una bebida (vaso, café, té, leche, chocolate o el azúcar del nivel escogido), esa selección se bloquea y la máquina avisa que no puede prepararla.
+- Si el `saldo` no alcanza para la bebida, también avisa.
+- El agua nunca bloquea nada porque es ilimitada.
 
 ## Archivos
 - `README.md`: este archivo
