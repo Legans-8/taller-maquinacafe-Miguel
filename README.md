@@ -14,6 +14,12 @@ El azúcar no es una bebida aparte. El cliente la escoge por niveles para cualqu
 - Nivel 2: medio (6 g)
 - Nivel 3: alto (9 g)
 
+## Dinero que acepta la máquina
+- Solo dinero colombiano o COP 
+- Monedas: 50, 100, 200, 500 y 1000
+- Billetes: 2000, 5000, 10000, 20000 y 50000
+- No acepta billetes de 100000 (ni ningún otro valor que no esté en la lista).
+
 ## Variables: ¿let o const?
 
 `const` si el valor nunca cambia, `let` si cambia mientras la máquina funciona.
@@ -28,6 +34,8 @@ El azúcar no es una bebida aparte. El cliente la escoge por niveles para cualqu
 - **nivelAzucar**: cambia según lo que escoja el cliente en cada compra.
 - **te**: se gasta con cada bebida.
 - **cambio (monedas, billetes)**: cambia según lo que haya que devolver.
+- **inventario de monedas** (monedas50, monedas100, monedas200, monedas500, monedas1000): suben cuando el cliente las mete y bajan cuando se da cambio.
+- **inventario de billetes** (billetes2000, billetes5000, billetes10000, billetes20000, billetes50000): igual que las monedas.
 
 ### const
 - **agua**: la fuente es directa, nunca se acaba.
@@ -47,6 +55,7 @@ El azúcar no es una bebida aparte. El cliente la escoge por niveles para cualqu
 - **nivelAzucar**: int, de 0 a 3, no existe el nivel 1.5.
 - **te**: int, en gramos.
 - **cambio (monedas, billetes)**: int, en $.
+- **inventario de monedas y billetes**: int, en unidades (cuántas monedas o billetes hay de cada tipo).
 
 ## Recetas (8 productos)
 
@@ -106,10 +115,23 @@ Cada bebida gasta 1 vaso, y el azúcar se suma aparte según el nivel escogido.
 5. Se gastan los ingredientes de la receta, más el azúcar del nivel escogido, y se descuenta el precio del `saldo`.
 6. Lo que sobre del `saldo` se devuelve como `cambio` (monedas y billetes).
 
-### Bloqueos
+## Entrega de cambio
+- El cambio es el saldo menos el precio de la bebida.
+- Se entrega empezando por lo más grande: billetes de 50000, 20000, 10000, 5000 y 2000, y luego monedas de 1000, 500, 200, 100 y 50.
+- Por cada tipo se entrega lo que se pueda sin pasarse del cambio y sin dar más de lo que hay en el inventario.
+- Al entregar, se descuentan del inventario las monedas y billetes entregados.
+- Si no se logra completar el cambio exacto, la máquina avisa que no tiene cambio, no prepara la bebida y devuelve el saldo.
+
+## Bloqueos
 - Si falta algún ingrediente de una bebida (vaso, café, té, leche, chocolate o el azúcar del nivel escogido), esa selección se bloquea y la máquina avisa que no puede prepararla.
 - Si el `saldo` no alcanza para la bebida, también avisa.
 - El agua nunca bloquea nada porque es ilimitada.
+
+## Operadores que se usan en el código
+- Aritméticos: +, -, *, / (por ejemplo saldo - precio para el cambio).
+- Asignación: =, +=, -= (por ejemplo saldo += 5000).
+- Comparación: >=, >, === (por ejemplo saldo >= precio).
+- Lógicos: && (y), ! (no) (por ejemplo, que haya café y leche y vasos).
 
 ## Archivos
 - `README.md`: este archivo
