@@ -122,4 +122,12 @@ let totalMonedas = monedas50 * 50 + monedas100 * 100 + monedas200 * 200 + moneda
 let totalBilletes = billetes2000 * 2000 + billetes5000 * 5000 + billetes10000 * 10000 + billetes20000 * 20000 + billetes50000 * 50000;
 let totalDinero = totalMonedas + totalBilletes;
 
-
+// Resultados 
+console.log("Precio: $" + precio);
+console.log("Café que queda:", cafe);
+console.log("Leche que queda:", leche);
+console.log("Azúcar que queda:", azucar);
+console.log("Vasos que quedan:", vaso);
+console.log("Cambio: $" + cambio);
+console.log("Billetes de 2000 a entregar:", cantidadBilletes2000);
+console.log("Dinero en la máquina: $" + totalDinero);
