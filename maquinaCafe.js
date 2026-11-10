@@ -81,53 +81,92 @@ const mokachinoLeche = 120;
 // Vasos por bebida
 const vasoPorBebida = 1;
 
-// ============================================
-// COMPRA DE PRUEBA: un capuchino
-// ============================================
+// =========================
+// Prueba con seleccion de bebida
+// =========================
 
-let nivelAzucar = 2;         // 0 a 3
-let dineroIngresado = 5000;  // el cliente mete un billete de 5000
- 
-// 1. Meter plata
-saldo = saldo + dineroIngresado;  // suma al saldo
-billetes5000++;                   // entra 1 billete al inventario
- 
-// 2. Precio y azúcar
-let precio = precioCapuchino;
-let azucarNecesario = nivelAzucar * azucarPorNivel;  // multiplicación
- 
-// 3. Comparaciones (dan true o false)
-// >= es "mayor o igual que"
-let alcanzaSaldo = saldo >= precio;
-let hayCafe = cafe >= capuchinoCafe;
-let hayLeche = leche >= capuchinoLeche;
-let hayAzucar = azucar >= azucarNecesario;
-let hayVasos = vaso >= vasoPorBebida;
-let noAlcanzaSaldo = !alcanzaSaldo;  // ! invierte true/false
- 
-// 4. Gastar ingredientes (resta)
-cafe = cafe - capuchinoCafe;
-leche = leche - capuchinoLeche;
-azucar = azucar - azucarNecesario;
-vaso--;                              // resta 1 vaso
- 
-// 5. Cambio
-cambio = saldo - precio;
-saldo = 0;
-let cantidadBilletes2000 = cambio / 2000;  // división
-billetes2000 = billetes2000 - cantidadBilletes2000;
- 
-// 6. Total de dinero en la máquina
-let totalMonedas = monedas50 * 50 + monedas100 * 100 + monedas200 * 200 + monedas500 * 500 + monedas1000 * 1000;
-let totalBilletes = billetes2000 * 2000 + billetes5000 * 5000 + billetes10000 * 10000 + billetes20000 * 20000 + billetes50000 * 50000;
-let totalDinero = totalMonedas + totalBilletes;
+// 1. escoger bebida
+const prompt = typeof window === "undefined" ? require("prompt-sync")() : window.prompt;
 
-// Resultados 
-console.log("Precio: $" + precio);
-console.log("Café que queda:", cafe);
-console.log("Leche que queda:", leche);
-console.log("Azúcar que queda:", azucar);
-console.log("Vasos que quedan:", vaso);
-console.log("Cambio: $" + cambio);
-console.log("Billetes de 2000 a entregar:", cantidadBilletes2000);
-console.log("Dinero en la máquina: $" + totalDinero);
+console.log("Bienvenido a la máquina expendedora de café");
+console.log("Seleccione una bebida:");
+console.log("1. Tinto ($" + precioTinto + ")");
+console.log("2. Café con leche ($" + precioCafeLeche + ")");
+console.log("3. Té ($" + precioTe + ")");
+console.log("4. Té con leche ($" + precioTeLeche + ")");
+console.log("5. Leche caliente ($" + precioLecheCaliente + ")");
+console.log("6. Chocolate ($" + precioChocolate + ")");
+console.log("7. Capuchino ($" + precioCapuchino + ")");
+console.log("8. Mokachino ($" + precioMokachino + ")");
+let opcion = Number(prompt("Escoge una opcion: "));
+
+// receta de la bebida escogida
+let nombreBebida = "";
+let precio = 0;
+let cafeNecesario = 0;
+let lecheNecesaria = 0;
+let chocolateNecesario = 0;
+let teNecesario = 0;
+let aguaNecesaria = 0;
+
+switch (opcion) {
+    case 1:
+        nombreBebida = "Tinto";
+        precio = precioTinto;
+        cafeNecesario = tintoCafe;
+        aguaNecesaria = tintoAgua;
+        break;
+    case 2:
+        nombreBebida = "Café con leche";
+        precio = precioCafeLeche;
+        cafeNecesario = cafeLecheCafe;
+        aguaNecesaria = cafeLecheAgua;
+        lecheNecesaria = cafeLecheLeche;
+        break;
+    case 3:
+        nombreBebida = "Té";
+        precio = precioTe;
+        teNecesario = teTe;
+        aguaNecesaria = teAgua;
+        break;
+    case 4:
+        nombreBebida = "Té con leche";
+        precio = precioTeLeche;
+        teNecesario = teLecheTe;
+        aguaNecesaria = teLecheAgua;
+        lecheNecesaria = teLecheLeche;
+        break;
+    case 5:
+        nombreBebida = "Leche caliente";
+        precio = precioLecheCaliente;
+        lecheNecesaria = lecheCalienteLeche;
+        break;
+    case 6:
+        nombreBebida = "Chocolate";
+        precio = precioChocolate;
+        chocolateNecesario = chocolateChocolate;
+        aguaNecesaria = chocolateAgua;
+        lecheNecesaria = chocolateLeche;
+        break;
+    case 7:
+        nombreBebida = "Capuchino";
+        precio = precioCapuchino;
+        cafeNecesario = capuchinoCafe;
+        aguaNecesaria = capuchinoAgua;
+        lecheNecesaria = capuchinoLeche;
+        break;
+    case 8:
+        nombreBebida = "Mokachino";
+        precio = precioMokachino;
+        cafeNecesario = mokachinoCafe;
+        chocolateNecesario = mokachinoChocolate;
+        aguaNecesaria = mokachinoAgua;
+        lecheNecesaria = mokachinoLeche;
+        break;
+}
+
+if (precio < 1) {
+    console.log("Opcion no valida");
+} else {
+    console.log("Escogiste: " + nombreBebida + " - $" + precio);
+}
