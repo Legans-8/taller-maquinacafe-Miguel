@@ -170,3 +170,34 @@ if (precio < 1) {
 } else {
     console.log("Escogiste: " + nombreBebida + " - $" + precio);
 }
+
+// nivel de azucar 
+let nivelAzucar = -1;
+do {
+    nivelAzucar = Number(prompt("Escoge el nivel de azucar (0 a 3): "));
+} while (nivelAzucar !== 0 && nivelAzucar !== 1 && nivelAzucar !== 2 && nivelAzucar !== 3);
+
+// revisar si hay suficientes ingredientes
+let azucarNecesaria = nivelAzucar * azucarPorNivel;
+let disponible = true;
+
+if (vaso < vasoPorBebida) {
+    console.log(nombreBebida + ": No hay suficientes vasos");
+    disponible = false;
+} else if (cafe < cafeNecesario) {
+    console.log(nombreBebida + ": No hay suficiente café");
+    disponible = false;
+} else if (leche < lecheNecesaria) {
+    console.log(nombreBebida + ": No hay suficiente leche");
+    disponible = false;
+} else if (chocolate < chocolateNecesario) {
+    console.log(nombreBebida + ": No hay suficiente chocolate");
+    disponible = false;
+} else if (te < teNecesario) {
+    console.log(nombreBebida + ": No hay suficiente té");
+    disponible = false;
+} else if (azucar < azucarNecesaria) {
+    console.log(nombreBebida + ": No hay suficiente azúcar");
+    disponible = false;
+}
+
