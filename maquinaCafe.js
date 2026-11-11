@@ -201,10 +201,12 @@ if (vaso < vasoPorBebida) {
     disponible = false;
 }
 
+// ingreso de dinero
+
 if (disponible) {
     let dineroIngresado = -1;
     do {
-        console.log("El precio de " + nombreBebida + " es: $" + precio);
+        console.log("El precio de " + nombreBebida + " es: $" + saldo + " / $" + precio + "/ Faltante: $" + (precio - saldo));
         dineroIngresado = Number(prompt("Ingrese el dinero: (0 para cancelar) "));
 
         switch (dineroIngresado) {
