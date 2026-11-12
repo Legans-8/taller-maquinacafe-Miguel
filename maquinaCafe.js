@@ -172,14 +172,13 @@ if (precio < 1) {
 }
 
 // nivel de azucar 
-function pedirAzucar() {
+let nivelAzucar = -1;
     do {
     nivelAzucar = Number(prompt("Escoge el nivel de azucar (0 a 3): "));
     } while (nivelAzucar !== 0 && nivelAzucar !== 1 && nivelAzucar !== 2 && nivelAzucar !== 3);
 
-    azucarNecesaria = nivelAzucar * azucarPorNivel;
-    return azucarNecesaria;
-}
+let azucarNecesaria = nivelAzucar * azucarPorNivel;
+let disponible = true;
 // revisar si hay suficientes ingredientes
 
 
