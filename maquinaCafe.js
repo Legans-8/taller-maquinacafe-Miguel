@@ -178,8 +178,10 @@ function pedirAzucar() {
     } while (nivelAzucar !== 0 && nivelAzucar !== 1 && nivelAzucar !== 2 && nivelAzucar !== 3);
 
     azucarNecesaria = nivelAzucar * azucarPorNivel;
+    return azucarNecesaria;
 }
 // revisar si hay suficientes ingredientes
+
 
 if (vaso < vasoPorBebida) {
     console.log(nombreBebida + ": No hay suficientes vasos");
