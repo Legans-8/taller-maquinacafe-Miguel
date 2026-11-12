@@ -172,14 +172,14 @@ if (precio < 1) {
 }
 
 // nivel de azucar 
-let nivelAzucar = -1;
-do {
+function pedirAzucar() {
+    do {
     nivelAzucar = Number(prompt("Escoge el nivel de azucar (0 a 3): "));
-} while (nivelAzucar !== 0 && nivelAzucar !== 1 && nivelAzucar !== 2 && nivelAzucar !== 3);
+    } while (nivelAzucar !== 0 && nivelAzucar !== 1 && nivelAzucar !== 2 && nivelAzucar !== 3);
 
+    azucarNecesaria = nivelAzucar * azucarPorNivel;
+}
 // revisar si hay suficientes ingredientes
-let azucarNecesaria = nivelAzucar * azucarPorNivel;
-let disponible = true;
 
 if (vaso < vasoPorBebida) {
     console.log(nombreBebida + ": No hay suficientes vasos");
