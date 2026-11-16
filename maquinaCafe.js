@@ -93,7 +93,12 @@ let lecheNecesaria = 0;
 let chocolateNecesario = 0;
 let teNecesario = 0;
 let aguaNecesaria = 0;
+let nivelAzucar = -1;
+let azucarNecesaria = 0;
 
+// funciones
+
+// menu
 function mostrarMenu() {
     console.log("Bienvenido a la máquina expendedora de café");
     console.log("Seleccione una bebida:");
@@ -173,6 +178,44 @@ function seleccionarBebida() {
             break;
     }
 }
+
+// azucar 
+function pedirAzucar() {
+    let nivel = -1;
+    do {
+        nivel = number(prompt("Escoge el nivel de azucar (0 a 3): "));
+    } while (nivel !== 0 && nivel !== 1 && nivel !== 2 && nivel !== 3);
+    return nivel;
+}
+
+function hayIngredientes() {
+    if (vaso < vasoPorBebida) {
+        console.log(nombreBebida + ": No hay vasos suficientes.");
+        return false;
+    }
+    if (cafe < cafeNecesario) {
+        console.log(nombreBebida + ": No hay suficiente café.");
+        return false;
+    }
+    if (leche < lecheNecesaria) {
+        console.log(nombreBebida + ": No hay suficiente leche.");
+        return false;
+    }
+    if (chocolate < chocolateNecesario) {
+        console.log(nombreBebida + ": No hay suficiente chocolate.");
+        return false;
+    }
+    if (te < teNecesario) {
+        console.log(nombreBebida + ": No hay suficiente té.");
+        return false;
+    }
+    if (azucar < azucarNecesaria) {
+        console.log(nombreBebida + ": No hay suficiente azúcar.");
+        return false;
+    }
+    return true;
+}
+
 // Programa 
 
 // 1. escoger bebida
@@ -190,35 +233,12 @@ if (precio < 1) {
 } else {
     console.log("Escogiste: " + nombreBebida + " - $" + precio);
 
-    // nivel de azucar
-    let nivelAzucar = -1;
-    do {
-        nivelAzucar = Number(prompt("Escoge el nivel de azucar (0 a 3): "));
-    } while (nivelAzucar !== 0 && nivelAzucar !== 1 && nivelAzucar !== 2 && nivelAzucar !== 3);
+    // pedir nivel de azucar
+    nivelAzucar = pedirAzucar();
+    azucarNecesaria = nivelAzucar * azucarPorNivel;
 
-    let azucarNecesaria = nivelAzucar * azucarPorNivel;
-    let disponible = true;
-
-    // revisar si hay suficientes ingredientes
-    if (vaso < vasoPorBebida) {
-        console.log(nombreBebida + ": No hay suficientes vasos");
-        disponible = false;
-    } else if (cafe < cafeNecesario) {
-        console.log(nombreBebida + ": No hay suficiente café");
-        disponible = false;
-    } else if (leche < lecheNecesaria) {
-        console.log(nombreBebida + ": No hay suficiente leche");
-        disponible = false;
-    } else if (chocolate < chocolateNecesario) {
-        console.log(nombreBebida + ": No hay suficiente chocolate");
-        disponible = false;
-    } else if (te < teNecesario) {
-        console.log(nombreBebida + ": No hay suficiente té");
-        disponible = false;
-    } else if (azucar < azucarNecesaria) {
-        console.log(nombreBebida + ": No hay suficiente azúcar");
-        disponible = false;
-    }
+    // revisar si hay ingredientes suficientes
+    let disponible = hayIngredientes();
 
     // ingreso de dinero
     if (disponible) {
