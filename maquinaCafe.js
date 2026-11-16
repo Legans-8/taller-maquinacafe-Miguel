@@ -85,22 +85,7 @@ const vasoPorBebida = 1;
 // Prueba con seleccion de bebida
 // =========================
 
-// 1. escoger bebida
-const prompt = typeof window === "undefined" ? require("prompt-sync")() : window.prompt;
-
-console.log("Bienvenido a la máquina expendedora de café");
-console.log("Seleccione una bebida:");
-console.log("1. Tinto ($" + precioTinto + ")");
-console.log("2. Café con leche ($" + precioCafeLeche + ")");
-console.log("3. Té ($" + precioTe + ")");
-console.log("4. Té con leche ($" + precioTeLeche + ")");
-console.log("5. Leche caliente ($" + precioLecheCaliente + ")");
-console.log("6. Chocolate ($" + precioChocolate + ")");
-console.log("7. Capuchino ($" + precioCapuchino + ")");
-console.log("8. Mokachino ($" + precioMokachino + ")");
-let opcion = Number(prompt("Escoge una opcion: "));
-
-// receta de la bebida escogida
+// receta de la bebida escogida 
 let nombreBebida = "";
 let precio = 0;
 let cafeNecesario = 0;
@@ -109,61 +94,96 @@ let chocolateNecesario = 0;
 let teNecesario = 0;
 let aguaNecesaria = 0;
 
-switch (opcion) {
-    case 1:
-        nombreBebida = "Tinto";
-        precio = precioTinto;
-        cafeNecesario = tintoCafe;
-        aguaNecesaria = tintoAgua;
-        break;
-    case 2:
-        nombreBebida = "Café con leche";
-        precio = precioCafeLeche;
-        cafeNecesario = cafeLecheCafe;
-        aguaNecesaria = cafeLecheAgua;
-        lecheNecesaria = cafeLecheLeche;
-        break;
-    case 3:
-        nombreBebida = "Té";
-        precio = precioTe;
-        teNecesario = teTe;
-        aguaNecesaria = teAgua;
-        break;
-    case 4:
-        nombreBebida = "Té con leche";
-        precio = precioTeLeche;
-        teNecesario = teLecheTe;
-        aguaNecesaria = teLecheAgua;
-        lecheNecesaria = teLecheLeche;
-        break;
-    case 5:
-        nombreBebida = "Leche caliente";
-        precio = precioLecheCaliente;
-        lecheNecesaria = lecheCalienteLeche;
-        break;
-    case 6:
-        nombreBebida = "Chocolate";
-        precio = precioChocolate;
-        chocolateNecesario = chocolateChocolate;
-        aguaNecesaria = chocolateAgua;
-        lecheNecesaria = chocolateLeche;
-        break;
-    case 7:
-        nombreBebida = "Capuchino";
-        precio = precioCapuchino;
-        cafeNecesario = capuchinoCafe;
-        aguaNecesaria = capuchinoAgua;
-        lecheNecesaria = capuchinoLeche;
-        break;
-    case 8:
-        nombreBebida = "Mokachino";
-        precio = precioMokachino;
-        cafeNecesario = mokachinoCafe;
-        chocolateNecesario = mokachinoChocolate;
-        aguaNecesaria = mokachinoAgua;
-        lecheNecesaria = mokachinoLeche;
-        break;
+function mostrarMenu() {
+    console.log("Bienvenido a la máquina expendedora de café");
+    console.log("Seleccione una bebida:");
+    console.log("1. Tinto ($" + precioTinto + ")");
+    console.log("2. Café con leche ($" + precioCafeLeche + ")");
+    console.log("3. Té ($" + precioTe + ")");
+    console.log("4. Té con leche ($" + precioTeLeche + ")");
+    console.log("5. Leche caliente ($" + precioLecheCaliente + ")");
+    console.log("6. Chocolate ($" + precioChocolate + ")");
+    console.log("7. Capuchino ($" + precioCapuchino + ")");
+    console.log("8. Mokachino ($" + precioMokachino + ")");
 }
+
+function seleccionarBebida() {
+
+    nombreBebida = "";
+    precio = 0;
+    cafeNecesario = 0;
+    lecheNecesaria = 0;
+    chocolateNecesario = 0;
+    teNecesario = 0;
+    aguaNecesaria = 0;
+
+    switch (opcion) {
+        case 1:
+            nombreBebida = "Tinto";
+            precio = precioTinto;
+            cafeNecesario = tintoCafe;
+            aguaNecesaria = tintoAgua;
+            break;
+        case 2:
+            nombreBebida = "Café con leche";
+            precio = precioCafeLeche;
+            cafeNecesario = cafeLecheCafe;
+            aguaNecesaria = cafeLecheAgua;
+            lecheNecesaria = cafeLecheLeche;
+            break;
+        case 3:
+            nombreBebida = "Té";
+            precio = precioTe;
+            teNecesario = teTe;
+            aguaNecesaria = teAgua;
+            break;
+        case 4:
+            nombreBebida = "Té con leche";
+            precio = precioTeLeche;
+            teNecesario = teLecheTe;
+            aguaNecesaria = teLecheAgua;
+            lecheNecesaria = teLecheLeche;
+            break;
+        case 5:
+            nombreBebida = "Leche caliente";
+            precio = precioLecheCaliente;
+            lecheNecesaria = lecheCalienteLeche;
+            break;
+        case 6:
+            nombreBebida = "Chocolate";
+            precio = precioChocolate;
+            chocolateNecesario = chocolateChocolate;
+            aguaNecesaria = chocolateAgua;
+            lecheNecesaria = chocolateLeche;
+            break;
+        case 7:
+            nombreBebida = "Capuchino";
+            precio = precioCapuchino;
+            cafeNecesario = capuchinoCafe;
+            aguaNecesaria = capuchinoAgua;
+            lecheNecesaria = capuchinoLeche;
+            break;
+        case 8:
+            nombreBebida = "Mokachino";
+            precio = precioMokachino;
+            cafeNecesario = mokachinoCafe;
+            chocolateNecesario = mokachinoChocolate;
+            aguaNecesaria = mokachinoAgua;
+            lecheNecesaria = mokachinoLeche;
+            break;
+    }
+}
+// Programa 
+
+// 1. escoger bebida
+const prompt = typeof window === 'undefined' ? require('prompt-sync')() : window.prompt;
+
+console.log("Bienvenido a la máquina expendedora de café");
+mostrarMenu();
+let opcion = Number(prompt("Escoge una opcion: "));
+
+// receta de la bebida escogida
+escogerBebida(opcion);
 
 if (precio < 1) {
     console.log("Opcion no valida");
