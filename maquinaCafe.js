@@ -216,6 +216,25 @@ function hayIngredientes() {
     return true;
 }
 
+// Dinero 
+function ingresarDinero() {
+    switch (valor) {
+        case 50: monedas50++; saldo = saldo + 50; break;
+        case 100: monedas100++; saldo = saldo + 100; break;
+        case 200: monedas200++; saldo = saldo + 200; break;
+        case 500: monedas500++; saldo = saldo + 500; break;
+        case 1000: monedas1000++; saldo = saldo + 1000; break;
+        case 2000: billetes2000++; saldo = saldo + 2000; break;
+        case 5000: billetes5000++; saldo = saldo + 5000; break;
+        case 10000: billetes10000++; saldo = saldo + 10000; break;
+        case 20000: billetes20000++; saldo = saldo + 20000; break;
+        case 50000: billetes50000++; saldo = saldo + 50000; break;
+        default: console.log("Valor no aceptado, ingrese un valor válido");
+        return false;
+    }
+    saldo = saldo + valor;
+    return true;
+}
 // Programa 
 
 // 1. escoger bebida
@@ -247,23 +266,13 @@ if (precio < 1) {
             console.log("El precio de " + nombreBebida + " es: $" + saldo + " / $" + precio + "/ Faltante: $" + (precio - saldo));
             dineroIngresado = Number(prompt("Ingrese el dinero: (0 para cancelar) "));
 
-            switch (dineroIngresado) {
-                case 0: break; // cancelar
-                case 50: monedas50++; saldo = saldo + 50; break;
-                case 100: monedas100++; saldo = saldo + 100; break;
-                case 200: monedas200++; saldo = saldo + 200; break;
-                case 500: monedas500++; saldo = saldo + 500; break;
-                case 1000: monedas1000++; saldo = saldo + 1000; break;
-                case 2000: billetes2000++; saldo = saldo + 2000; break;
-                case 5000: billetes5000++; saldo = saldo + 5000; break;
-                case 10000: billetes10000++; saldo = saldo + 10000; break;
-                case 20000: billetes20000++; saldo = saldo + 20000; break;
-                case 50000: billetes50000++; saldo = saldo + 50000; break;
-                default: console.log("Valor no aceptado, ingrese un valor válido");
+            if (dineroIngresado !== 0) {
+                ingresarDinero(dineroIngresado);
             }
         } while (saldo < precio && dineroIngresado !== 0);
 
         if (saldo >= precio) {
+
             // preparar bebida
             cafe = cafe - cafeNecesario;
             leche = leche - lecheNecesaria;
