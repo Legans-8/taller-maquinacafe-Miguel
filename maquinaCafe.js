@@ -169,162 +169,157 @@ if (precio < 1) {
     console.log("Opcion no valida");
 } else {
     console.log("Escogiste: " + nombreBebida + " - $" + precio);
-}
 
-// nivel de azucar 
-let nivelAzucar = -1;
+    // nivel de azucar
+    let nivelAzucar = -1;
     do {
-    nivelAzucar = Number(prompt("Escoge el nivel de azucar (0 a 3): "));
+        nivelAzucar = Number(prompt("Escoge el nivel de azucar (0 a 3): "));
     } while (nivelAzucar !== 0 && nivelAzucar !== 1 && nivelAzucar !== 2 && nivelAzucar !== 3);
 
-let azucarNecesaria = nivelAzucar * azucarPorNivel;
-let disponible = true;
-// revisar si hay suficientes ingredientes
+    let azucarNecesaria = nivelAzucar * azucarPorNivel;
+    let disponible = true;
 
-
-if (vaso < vasoPorBebida) {
-    console.log(nombreBebida + ": No hay suficientes vasos");
-    disponible = false;
-} else if (cafe < cafeNecesario) {
-    console.log(nombreBebida + ": No hay suficiente café");
-    disponible = false;
-} else if (leche < lecheNecesaria) {
-    console.log(nombreBebida + ": No hay suficiente leche");
-    disponible = false;
-} else if (chocolate < chocolateNecesario) {
-    console.log(nombreBebida + ": No hay suficiente chocolate");
-    disponible = false;
-} else if (te < teNecesario) {
-    console.log(nombreBebida + ": No hay suficiente té");
-    disponible = false;
-} else if (azucar < azucarNecesaria) {
-    console.log(nombreBebida + ": No hay suficiente azúcar");
-    disponible = false;
-}
-
-// ingreso de dinero
-
-if (disponible) {
-    let dineroIngresado = -1;
-    do {
-        console.log("El precio de " + nombreBebida + " es: $" + saldo + " / $" + precio + "/ Faltante: $" + (precio - saldo));
-        dineroIngresado = Number(prompt("Ingrese el dinero: (0 para cancelar) "));
-
-        switch (dineroIngresado) {
-            case 0: break; // cancelar
-            case 50: monedas50++; saldo = saldo + 50; break;
-            case 100: monedas100++; saldo = saldo + 100; break;
-            case 200: monedas200++; saldo = saldo + 200; break;
-            case 500: monedas500++; saldo = saldo + 500; break;
-            case 1000: monedas1000++; saldo = saldo + 1000; break;
-            case 2000: billetes2000++; saldo = saldo + 2000; break;
-            case 5000: billetes5000++; saldo = saldo + 5000; break;
-            case 10000: billetes10000++; saldo = saldo + 10000; break;
-            case 20000: billetes20000++; saldo = saldo + 20000; break;
-            case 50000: billetes50000++; saldo = saldo + 50000; break;
-            default: console.log("Valor no aceptado, ingrese un valor válido");
-        }
-    } while (saldo < precio && dineroIngresado !== 0);
-
-    if (saldo >= precio) {
-        // preparar bebida 
-        cafe = cafe - cafeNecesario;
-        leche = leche - lecheNecesaria;
-        chocolate = chocolate - chocolateNecesario;
-        te = te - teNecesario;
-        azucar = azucar - azucarNecesaria;
-        vaso --;
-
-        console.log("preparando " + nombreBebida + "...");
-        console.log("Su " + nombreBebida + " que la Disfrutes!");
-        // entrega cambio
-        cambio = saldo - precio;
-        saldo = 0;
-        console.log(cambio > 0 ? "Su cambio es: $" + cambio : "No hay cambio.");
-    }   else {
-        // compra cancelada
-        console.log("Compra cancelada.");
-        cambio = saldo;
-        saldo = 0;
-        if (cambio > 0) {
-            console.log("te devuelvo $" + cambio);
-        }
+    // revisar si hay suficientes ingredientes
+    if (vaso < vasoPorBebida) {
+        console.log(nombreBebida + ": No hay suficientes vasos");
+        disponible = false;
+    } else if (cafe < cafeNecesario) {
+        console.log(nombreBebida + ": No hay suficiente café");
+        disponible = false;
+    } else if (leche < lecheNecesaria) {
+        console.log(nombreBebida + ": No hay suficiente leche");
+        disponible = false;
+    } else if (chocolate < chocolateNecesario) {
+        console.log(nombreBebida + ": No hay suficiente chocolate");
+        disponible = false;
+    } else if (te < teNecesario) {
+        console.log(nombreBebida + ": No hay suficiente té");
+        disponible = false;
+    } else if (azucar < azucarNecesaria) {
+        console.log(nombreBebida + ": No hay suficiente azúcar");
+        disponible = false;
     }
 
-// calcular el cambio a entregar
+    // ingreso de dinero
+    if (disponible) {
+        let dineroIngresado = -1;
+        do {
+            console.log("El precio de " + nombreBebida + " es: $" + saldo + " / $" + precio + "/ Faltante: $" + (precio - saldo));
+            dineroIngresado = Number(prompt("Ingrese el dinero: (0 para cancelar) "));
 
-if (cambio > 0) {
-    let vueltas = cambio;
+            switch (dineroIngresado) {
+                case 0: break; // cancelar
+                case 50: monedas50++; saldo = saldo + 50; break;
+                case 100: monedas100++; saldo = saldo + 100; break;
+                case 200: monedas200++; saldo = saldo + 200; break;
+                case 500: monedas500++; saldo = saldo + 500; break;
+                case 1000: monedas1000++; saldo = saldo + 1000; break;
+                case 2000: billetes2000++; saldo = saldo + 2000; break;
+                case 5000: billetes5000++; saldo = saldo + 5000; break;
+                case 10000: billetes10000++; saldo = saldo + 10000; break;
+                case 20000: billetes20000++; saldo = saldo + 20000; break;
+                case 50000: billetes50000++; saldo = saldo + 50000; break;
+                default: console.log("Valor no aceptado, ingrese un valor válido");
+            }
+        } while (saldo < precio && dineroIngresado !== 0);
 
-// billetes
+        if (saldo >= precio) {
+            // preparar bebida
+            cafe = cafe - cafeNecesario;
+            leche = leche - lecheNecesaria;
+            chocolate = chocolate - chocolateNecesario;
+            te = te - teNecesario;
+            azucar = azucar - azucarNecesaria;
+            vaso --;
 
-while (vueltas >= 50000 && billetes50000 > 0) {
-    vueltas = vueltas - 50000;
-    billetes50000--;
-    console.log("Entregando billete de $50000");
-}   
-while (vueltas >= 20000 && billetes20000 > 0) {
-    vueltas = vueltas - 20000;
-    billetes20000--;
-    console.log("Entregando billete de $20000");
-}
-while (vueltas >= 10000 && billetes10000 > 0) {
-    vueltas = vueltas - 10000;
-    billetes10000--;
-    console.log("Entregando billete de $10000");
-}
-while (vueltas >= 5000 && billetes5000 > 0) {
-    vueltas = vueltas - 5000;
-    billetes5000--;
-    console.log("Entregando billete de $5000");
-}
-while (vueltas >= 2000 && billetes2000 > 0) {
-    vueltas = vueltas - 2000;
-    billetes2000--;
-    console.log("Entregando billete de $2000");
-}
+            console.log("preparando " + nombreBebida + "...");
+            console.log("Su " + nombreBebida + " que la Disfrutes!");
+            // entrega cambio
+            cambio = saldo - precio;
+            saldo = 0;
+            console.log(cambio > 0 ? "Su cambio es: $" + cambio : "No hay cambio.");
+        } else {
+            // compra cancelada
+            console.log("Compra cancelada.");
+            cambio = saldo;
+            saldo = 0;
+            if (cambio > 0) {
+                console.log("te devuelvo $" + cambio);
+            }
+        }
 
-// monedas
+        // calcular el cambio a entregar
+        if (cambio > 0) {
+            let vueltas = cambio;
 
-while (vueltas >= 1000 && monedas1000 > 0) {
-    vueltas = vueltas - 1000;
-    monedas1000--;
-    console.log("Entregando moneda de $1000");
-}   
-while (vueltas >= 500 && monedas500 > 0) {
-    vueltas = vueltas - 500;
-    monedas500--;
-    console.log("Entregando moneda de $500");
-}
-while (vueltas >= 200 && monedas200 > 0) {
-    vueltas = vueltas - 200;
-    monedas200--;
-    console.log("Entregando moneda de $200");
-}
-while (vueltas >= 100 && monedas100 > 0) {
-    vueltas = vueltas - 100;
-    monedas100--;
-    console.log("Entregando moneda de $100");
-}
-while (vueltas >= 50 && monedas50 > 0) {
-    vueltas = vueltas - 50;
-    monedas50--;
-    console.log("Entregando moneda de $50");
-}
+            // billetes
+            while (vueltas >= 50000 && billetes50000 > 0) {
+                vueltas = vueltas - 50000;
+                billetes50000--;
+                console.log("Entregando billete de $50000");
+            }
+            while (vueltas >= 20000 && billetes20000 > 0) {
+                vueltas = vueltas - 20000;
+                billetes20000--;
+                console.log("Entregando billete de $20000");
+            }
+            while (vueltas >= 10000 && billetes10000 > 0) {
+                vueltas = vueltas - 10000;
+                billetes10000--;
+                console.log("Entregando billete de $10000");
+            }
+            while (vueltas >= 5000 && billetes5000 > 0) {
+                vueltas = vueltas - 5000;
+                billetes5000--;
+                console.log("Entregando billete de $5000");
+            }
+            while (vueltas >= 2000 && billetes2000 > 0) {
+                vueltas = vueltas - 2000;
+                billetes2000--;
+                console.log("Entregando billete de $2000");
+            }
 
-if (vueltas > 0) {
-    console.log("No hay suficiente cambio para entregar $" + vueltas);
-}
+            // monedas
+            while (vueltas >= 1000 && monedas1000 > 0) {
+                vueltas = vueltas - 1000;
+                monedas1000--;
+                console.log("Entregando moneda de $1000");
+            }
+            while (vueltas >= 500 && monedas500 > 0) {
+                vueltas = vueltas - 500;
+                monedas500--;
+                console.log("Entregando moneda de $500");
+            }
+            while (vueltas >= 200 && monedas200 > 0) {
+                vueltas = vueltas - 200;
+                monedas200--;
+                console.log("Entregando moneda de $200");
+            }
+            while (vueltas >= 100 && monedas100 > 0) {
+                vueltas = vueltas - 100;
+                monedas100--;
+                console.log("Entregando moneda de $100");
+            }
+            while (vueltas >= 50 && monedas50 > 0) {
+                vueltas = vueltas - 50;
+                monedas50--;
+                console.log("Entregando moneda de $50");
+            }
 
-cambio = 0;
-}   
+            if (vueltas > 0) {
+                console.log("No hay suficiente cambio para entregar $" + vueltas);
+            }
+
+            cambio = 0;
+        }
+    }
 }
 
 // reporte de inventario
-    
+
 let totalMonedas = monedas50 * 50 + monedas100 * 100 + monedas200 * 200 + monedas500 * 500 + monedas1000 * 1000;
 let totalBilletes = billetes2000 * 2000 + billetes5000 * 5000 + billetes10000 * 10000 + billetes20000 * 20000 + billetes50000 * 50000;
-let totalDinero = totalMonedas + totalBilletes; 
+let totalDinero = totalMonedas + totalBilletes;
 
 console.log("Inventario de la maquina:");
 console.log("cafe restante: " + cafe + " g");
@@ -334,4 +329,3 @@ console.log("te restante: " + te + " g");
 console.log("azucar restante: " + azucar + " g");
 console.log("vasos restantes: " + vaso + " unidades");
 console.log("dinero en la maquina: $" + totalDinero);
-
