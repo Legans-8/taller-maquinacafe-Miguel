@@ -310,6 +310,22 @@ function entregarCambio(cantidad) {
     }
 }
 
+// reporte de inventario
+function mostrarInventario() {
+    let totalMonedas = monedas50 * 50 + monedas100 * 100 + monedas200 * 200 + monedas500 * 500 + monedas1000 * 1000;
+    let totalBilletes = billetes2000 * 2000 + billetes5000 * 5000 + billetes10000 * 10000 + billetes20000 * 20000 + billetes50000 * 50000;
+    let totalDinero = totalMonedas + totalBilletes;
+    
+    console.log("Inventario de la maquina:");
+    console.log("cafe restante: " + cafe + " g");
+    console.log("leche restante: " + leche + " ml");
+    console.log("chocolate restante: " + chocolate + " g");
+    console.log("te restante: " + te + " g");
+    console.log("azucar restante: " + azucar + " g");
+    console.log("vasos restantes: " + vaso + " unidades");
+    console.log("Total de dinero en la maquina: $" + totalDinero);
+}
+
 // Programa 
 
 // 1. escoger bebida
@@ -372,17 +388,4 @@ if (precio < 1) {
     }
 }
 
-// reporte de inventario
-
-let totalMonedas = monedas50 * 50 + monedas100 * 100 + monedas200 * 200 + monedas500 * 500 + monedas1000 * 1000;
-let totalBilletes = billetes2000 * 2000 + billetes5000 * 5000 + billetes10000 * 10000 + billetes20000 * 20000 + billetes50000 * 50000;
-let totalDinero = totalMonedas + totalBilletes;
-
-console.log("Inventario de la maquina:");
-console.log("cafe restante: " + cafe + " g");
-console.log("leche restante: " + leche + " ml");
-console.log("chocolate restante: " + chocolate + " g");
-console.log("te restante: " + te + " g");
-console.log("azucar restante: " + azucar + " g");
-console.log("vasos restantes: " + vaso + " unidades");
-console.log("dinero en la maquina: $" + totalDinero);
+mostrarInventario();
