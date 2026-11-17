@@ -24,8 +24,8 @@
             <div class="product" aria-hidden="true"></div>
             <div class="shelf__info">
               <span class="shelf__code">1</span>
-              <span class="shelf__name">Producto 1</span>
-              <span class="shelf__price">$1.234</span>
+              <span class="shelf__name">Tinto</span>
+              <span class="shelf__price">$1.500</span>
               <span class="shelf__stock">Stock: <b>123</b></span>
             </div>
           </div>
@@ -34,8 +34,8 @@
             <div class="product" aria-hidden="true"></div>
             <div class="shelf__info">
               <span class="shelf__code">2</span>
-              <span class="shelf__name">Producto 2</span>
-              <span class="shelf__price">$1.234</span>
+              <span class="shelf__name">Café con leche</span>
+              <span class="shelf__price">$2.500</span>
               <span class="shelf__stock">Stock: <b>123</b></span>
             </div>
           </div>
@@ -44,8 +44,8 @@
             <div class="product" aria-hidden="true"></div>
             <div class="shelf__info">
               <span class="shelf__code">3</span>
-              <span class="shelf__name">Producto 3</span>
-              <span class="shelf__price">$1.234</span>
+              <span class="shelf__name">Té</span>
+              <span class="shelf__price">$1.500</span>
               <span class="shelf__stock">Stock: <b>123</b></span>
             </div>
           </div>
@@ -54,8 +54,8 @@
             <div class="product" aria-hidden="true"></div>
             <div class="shelf__info">
               <span class="shelf__code">4</span>
-              <span class="shelf__name">Producto 4</span>
-              <span class="shelf__price">$1.234</span>
+              <span class="shelf__name">Té con leche</span>
+              <span class="shelf__price">$2.500</span>
               <span class="shelf__stock">Stock: <b>123</b></span>
             </div>
           </div>
@@ -64,8 +64,38 @@
             <div class="product" aria-hidden="true"></div>
             <div class="shelf__info">
               <span class="shelf__code">5</span>
-              <span class="shelf__name">Producto 5</span>
-              <span class="shelf__price">$1.234</span>
+              <span class="shelf__name">Leche caliente</span>
+              <span class="shelf__price">$2.000</span>
+              <span class="shelf__stock">Stock: <b>123</b></span>
+            </div>
+          </div>
+
+          <div class="shelf" data-product="6">
+            <div class="product" aria-hidden="true"></div>
+            <div class="shelf__info">
+              <span class="shelf__code">6</span>
+              <span class="shelf__name">Chocolate</span>
+              <span class="shelf__price">$3.000</span>
+              <span class="shelf__stock">Stock: <b>123</b></span>
+            </div>
+          </div>
+
+          <div class="shelf" data-product="7">
+            <div class="product" aria-hidden="true"></div>
+            <div class="shelf__info">
+              <span class="shelf__code">7</span>
+              <span class="shelf__name">Capuchino</span>
+              <span class="shelf__price">$3.000</span>
+              <span class="shelf__stock">Stock: <b>123</b></span>
+            </div>
+          </div>
+
+          <div class="shelf" data-product="8">
+            <div class="product" aria-hidden="true"></div>
+            <div class="shelf__info">
+              <span class="shelf__code">8</span>
+              <span class="shelf__name">Mokachino</span>
+              <span class="shelf__price">$3.500</span>
               <span class="shelf__stock">Stock: <b>123</b></span>
             </div>
           </div>
@@ -112,12 +142,26 @@
           </div>
         </form>
 
+        <div class="azucar" role="group" arial-label="Nivel de Azucar">
+          <span class="azucar__label">Nivel de azúcar</span>
+          <div class="azucar__level" id="azucar-level">
+            <button class="azucar__button" type="button" data-level="0">0</button>
+            <button class="azucar__button" type="button" data-level="1">1</button>
+            <button class="azucar__button" type="button" data-level="2">2</button>
+            <button class="azucar__button" type="button" data-level="3">3</button>
+          </div>
+        </div>
+
+
         <div class="keypad">
           <button class="key" type="button" data-select="1">1</button>
           <button class="key" type="button" data-select="2">2</button>
           <button class="key" type="button" data-select="3">3</button>
           <button class="key" type="button" data-select="4">4</button>
           <button class="key" type="button" data-select="5">5</button>
+          <button class="key" type="button" data-select="6">6</button>
+          <button class="key" type="button" data-select="7">7</button>
+          <button class="key" type="button" data-select="8">8</button>
           <button class="key cancel" type="button" data-action="cancel">✕</button>
         </div>
 
@@ -139,5 +183,6 @@
       </aside>
     </div>
   </main>
+  <script src="maquinaCafe.js"></script>
 </body>
 </html>
