@@ -227,6 +227,53 @@ body {
 .screen__label   { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-text-muted); }
 .screen__value   { font-size: 1.9rem; font-weight: 700; letter-spacing: 0.05em; }
 
+.screen__msg {
+  margin-top: 4px;
+  min-height: 2.4em;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Nivel de azúcar ---------- */
+.azucar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  background: var(--color-machine-dark);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.azucar__label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.azucar__level {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.azucar__button {
+  padding: 6px 0;
+  background: var(--gray-300);
+  color: var(--color-text-dark);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  cursor: pointer;
+}
+.azucar__button:hover { background: var(--gray-100); }
+.azucar__button.is-active {
+  background: var(--gray-050);
+  box-shadow: 0 0 0 2px var(--gray-400);
+}
+
 /* ---------- Formulario de saldo ---------- */
 .balance-form {
   display: flex;
