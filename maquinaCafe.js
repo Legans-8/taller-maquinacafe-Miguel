@@ -112,7 +112,7 @@ function mostrarMenu() {
     console.log("8. Mokachino ($" + precioMokachino + ")");
 }
 
-function seleccionarBebida() {
+function escogerBebida() {
 
     nombreBebida = "";
     precio = 0;
@@ -183,7 +183,7 @@ function seleccionarBebida() {
 function pedirAzucar() {
     let nivel = -1;
     do {
-        nivel = number(prompt("Escoge el nivel de azucar (0 a 3): "));
+        nivel = Number(prompt("Escoge el nivel de azucar (0 a 3): "));
     } while (nivel !== 0 && nivel !== 1 && nivel !== 2 && nivel !== 3);
     return nivel;
 }
@@ -217,7 +217,7 @@ function hayIngredientes() {
 }
 
 // Dinero 
-function ingresarDinero() {
+function ingresarDinero(valor) {
     switch (valor) {
         case 50: monedas50++; saldo = saldo + 50; break;
         case 100: monedas100++; saldo = saldo + 100; break;
